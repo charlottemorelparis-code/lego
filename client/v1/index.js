@@ -19,6 +19,7 @@ console.table(MY_FAVORITE_DEALERS);
 console.log(MY_FAVORITE_DEALERS[0]);
 
 /**
+ * 
  * 🌱
  * Let's go with a very very simple first todo
  * Keep pushing
@@ -29,7 +30,8 @@ console.log(MY_FAVORITE_DEALERS[0]);
 // 0. I have 2 favorite lego sets shopping communities stored in MY_FAVORITE_DEALERS variable
 // 1. Create a new variable and assign it the link of the lego set with the highest reduction I can find on these 2 websites
 // 2. Log the variable
-
+const bestDealLink = MY_FAVORITE_DEALERS[0].url;
+console.log(bestDealLink);
 /**
  * 🧱
  * Easy 😁?
@@ -42,16 +44,44 @@ console.log(MY_FAVORITE_DEALERS[0]);
 // 🎯 TODO 2: Number of deals
 // 1. Create a variable and assign it the number of deals
 // 2. Log the variable
+var numberOfDeals = deals.length;
+console.log("le nombre de deals est : ",numberOfDeals);
+
 
 // 🎯 TODO 3: Website name
 // 1. Create a variable and assign it the list of shopping community name only
 // 2. Log the variable
 // 3. Log how many shopping communities we have
-
+var listOfCommunities = [];
+for (var i = 0; i < numberOfDeals; i++) {
+  var community = deals[i].community;
+  listOfCommunities.push(community);
+}
+console.log(listOfCommunities);
+for( var currentDeal of deals){
+  console.log(currentDeal.community);
+}
 // 🎯 TODO 4: Sort by price
 // 1. Create a function to sort the deals by price
 // 2. Create a variable and assign it the list of sets by price from lowest to highest
 // 3. Log the variable
+// 🎯 TODO 4: Sort by price
+
+var dealsSortedByPrice = deals.slice(); // copie du tableau
+
+for (var i = 0; i < dealsSortedByPrice.length - 1; i++) {
+  for (var j = i + 1; j < dealsSortedByPrice.length; j++) {
+    if (dealsSortedByPrice[i].price > dealsSortedByPrice[j].price) {
+      var temp = dealsSortedByPrice[i];
+      dealsSortedByPrice[i] = dealsSortedByPrice[j];
+      dealsSortedByPrice[j] = temp;
+    }
+  }
+}
+
+console.log(dealsSortedByPrice);
+
+
 
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the deals by date
