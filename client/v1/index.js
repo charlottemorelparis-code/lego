@@ -67,35 +67,53 @@ for( var currentDeal of deals){
 // 3. Log the variable
 // 🎯 TODO 4: Sort by price
 
-var dealsSortedByPrice = deals.slice(); // copie du tableau
+//var dealsSortedByPrice = deals.slice(); // copie du tableau
+//for (var i = 0; i < dealsSortedByPrice.length - 1; i++) {
+//  for (var j = i + 1; j < dealsSortedByPrice.length; j++) {
+//    if (dealsSortedByPrice[i].price > dealsSortedByPrice[j].price) {
+//      var temp = dealsSortedByPrice[i];
+//      dealsSortedByPrice[i] = dealsSortedByPrice[j];
+//      dealsSortedByPrice[j] = temp;
+//    }
+//  }
+//}
+//console.log(dealsSortedByPrice);
 
-for (var i = 0; i < dealsSortedByPrice.length - 1; i++) {
-  for (var j = i + 1; j < dealsSortedByPrice.length; j++) {
-    if (dealsSortedByPrice[i].price > dealsSortedByPrice[j].price) {
-      var temp = dealsSortedByPrice[i];
-      dealsSortedByPrice[i] = dealsSortedByPrice[j];
-      dealsSortedByPrice[j] = temp;
-    }
-  }
-}
-
-console.log(dealsSortedByPrice);
-
-
+deals.sort((a, b) => b.price - a.price);
+console.log("tri par prix :");
+console.log(deals);
 
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the deals by date
 // 2. Create a variable and assign it the list of deals by date from recent to old
 // 3. Log the variable
 
+var dealsSortedByDate = deals
+  .slice()
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+console.log("tri par date :");
+console.log(dealsSortedByDate);
+
 // 🎯 TODO 6: Filter a specific percentage discount range
 // 1. Filter the list of deals between 50% and 75%
 // 2. Log the list
 
+var dealsFilteredByDiscount = deals.filter(deal =>
+  deal.discount >= 50 && deal.discount <= 75
+);
+
+console.log("deals avec une réduction entre 50% et 75% :");
+console.log(dealsFilteredByDiscount);
+
 // 🎯 TODO 7: Average percentage discount
 // 1. Determine the average percentage discount of the deals
 // 2. Log the average
+var averageDiscount =
+  deals.reduce((total, deal) => total + deal.discount, 0) / deals.length;
 
+console.log("réduction moyenne (%)");
+console.log(averageDiscount);
 /**
  * 🏎
  * We are almost done with the `deals` variable
@@ -118,7 +136,26 @@ console.log(dealsSortedByPrice);
 //
 // 2. Log the variable
 // 3. Log the number of deals by community
+var communities = deals.reduce((acc, deal) => {
+  var communityName = deal.community;
 
+  if (!acc[communityName]) {
+    acc[communityName] = [];
+  }
+
+  acc[communityName].push(deal);
+  return acc;
+}, {});
+
+// 2. Log the variable
+console.log("deals par communauté");
+console.log(communities);
+
+// 3. Log the number of deals by community
+console.log("nombre de deals par communauté");
+for (var community in communities) {
+  console.log(community + ":", communities[community].length);
+}
 // 🎯 TODO 9: Sort by price for each community
 // 1. For each community, sort the deals by discount price, from highest to lowest
 // 2. Log the sort
