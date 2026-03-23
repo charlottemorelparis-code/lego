@@ -1,75 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>🧱 Lego | Predictability of a lego set deal</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🧱 Lego | Profitabilité d'un deal</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Lego</h1>
-    <section id="options">
-      <div id="show">
-        <label for="show-select">Show:</label>
-        <select name="show" id="show-select">
-          <option value="6">6</option>
-          <option value="12">12</option>
-          <option value="24">24</option>
-        </select>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <span class="header-logo">🧱</span>
+        <div class="header-text">
+          <h1 class="header-title">Lego Deal Finder</h1>
+          <p class="header-subtitle">Identifiez les meilleures opportunités d'investissement LEGO</p>
+        </div>
+        <div class="header-bricks">
+          <div class="brick brick--yellow"></div>
+          <div class="brick brick--blue"></div>
+          <div class="brick brick--green"></div>
+          <div class="brick brick--orange"></div>
+        </div>
       </div>
-      <div id="page">
-        <label for="page-select">Go to page:</label>
-        <select name="page" id="page-select"> </select>
+    </header>
+
+    <main class="main-content">
+
+      <!-- Controls bar -->
+      <section class="controls-bar" id="options">
+
+        <div class="control-group">
+          <label class="control-label" for="show-select">Afficher</label>
+          <select class="control-select" name="show" id="show-select">
+            <option value="6">6</option>
+            <option value="12">12</option>
+            <option value="24">24</option>
+          </select>
+          <span class="control-hint">deals</span>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="page-select">Page</label>
+          <select class="control-select" name="page" id="page-select"></select>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="sort-select">Trier par</label>
+          <select class="control-select" name="sort" id="sort-select">
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+            <option value="discount-desc">Meilleure réduction</option>
+            <option value="comments-desc">Plus commentés</option>
+            <option value="temp-desc">Deals chauds 🔥</option>
+            <option value="date-asc">Plus récents</option>
+            <option value="date-desc">Plus anciens</option>
+          </select>
+        </div>
+
+        <div class="control-group filters-group">
+          <span class="control-label">Filtres rapides</span>
+          <div class="filter-pills">
+            <button class="filter-btn" data-filter="">Tous</button>
+            <button class="filter-btn" data-filter="best-discount">Meilleures réductions</button>
+            <button class="filter-btn" data-filter="most-commented">Plus commentés</button>
+            <button class="filter-btn" data-filter="hot-deals">Deals chauds 🔥</button>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="content-grid">
+
+        <!-- Left column: indicators + lego set selector -->
+        <aside class="sidebar">
+
+          <div class="card" id="lego">
+            <h2 class="card-title">Set LEGO</h2>
+            <label class="control-label" for="lego-set-id-select">ID du set</label>
+            <select class="control-select control-select--full" id="lego-set-id-select"></select>
+          </div>
+
+          <div class="card" id="indicators">
+            <h2 class="card-title">Indicateurs</h2>
+
+            <div class="indicator-row">
+              <span class="indicator-label">Nombre de deals</span>
+              <span class="indicator-value" id="nbDeals">0</span>
+            </div>
+            <div class="indicator-row">
+              <span class="indicator-label">Ventes Vinted</span>
+              <span class="indicator-value" id="nbSales">0</span>
+            </div>
+
+            <hr class="indicator-divider" />
+            <p class="indicator-section-title">Prix de revente</p>
+
+            <div class="indicator-row">
+              <span class="indicator-label">p5</span>
+              <span class="indicator-value" id="p5">—</span>
+            </div>
+            <div class="indicator-row">
+              <span class="indicator-label">p25</span>
+              <span class="indicator-value" id="p25">—</span>
+            </div>
+            <div class="indicator-row">
+              <span class="indicator-label">p50 (médiane)</span>
+              <span class="indicator-value" id="p50">—</span>
+            </div>
+
+            <hr class="indicator-divider" />
+
+            <div class="indicator-row">
+              <span class="indicator-label">Durée de vie annonce</span>
+              <span class="indicator-value" id="lifetime">—</span>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Right column: deals list -->
+        <section id="deals" class="deals-section"></section>
+
       </div>
-      <div id="filters">
-        <span>By best discount</span>
-        <span>By most commented</span>
-        <span>By hot deals</span>
-      </div>
-      <div id="sort">
-        <label for="sort-select">Sort:</label>
-        <select name="sort" id="sort-select">
-          <option value="price-asc">Cheaper</option>
-          <option value="price-desc">Expensive</option>
-          <option value="date-asc">Recently published</option>
-          <option value="date-desc">Anciently published</option>
-        </select>
-      </div>
-    </section>
-    <section id="lego">
-      <h2>Lego sets</h2>
-      <div>
-        <label>Lego set id:</label>
-        <select id="lego-set-id-select"></select> 
-      </div>
-    </section>
-    <section id="indicators">
-      <h2>Indicators</h2>
-      <div>
-        <span>Number of deals</span>
-        <span id="nbDeals">0</span>
-      </div>
-      <div>
-        <span>Number of sales</span>
-        <span id="nbSales">0</span>
-      </div>
-      <div>
-        <span>p5 sales price value</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>p25 sales price value</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>p50 sales price value</span>
-        <span>0</span>
-      </div>
-      <div>
-        <span>Lifetime value</span>
-        <span>10 days</span>
-      </div>
-    </section>
-    <section id="deals"></section>
-    <script type="text/javascript" charset="UTF-8" src="utils.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="portfolio.js"></script>
+    </main>
+
+    <footer class="site-footer">
+      <p>Données : <a href="https://www.dealabs.com" target="_blank">Dealabs</a> · <a href="https://www.avenuedelabrique.com" target="_blank">Avenue de la Brique</a> · <a href="https://www.vinted.fr" target="_blank">Vinted</a></p>
+    </footer>
+
+    <script src="utils.js"></script>
+    <script src="portfolio.js"></script>
   </body>
 </html>
