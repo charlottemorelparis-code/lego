@@ -1,8 +1,6 @@
 import * as cheerio from 'cheerio';
 import { v5 as uuidv5 } from 'uuid';
-
-const COOKIE = "";
-
+const COOKIE = "v_udt=UTF3ZFNYa2xqeWRvRGRjVU9CNGN6SjlMVlVYYi0tYzFsWlpVN0lVUFR2bFJYKy0tUitLVHZ2OFZqMEd1MTJYbnoyUm45dz09; anonymous-locale=fr; ... datadome=cvnyfL~fRcfBALkYSke6mkOaWBBHLoEBNoppqJsOi0PiYlzBgT7XQjbQpVhmwgmFPiAVh192Ns4PLIAEc3dfLGmr_zlHsZ3ae6O2LsxuYlhcnoR_pz5XqjXQykJQ0LaS";
 function isNotDefined(value) {
   return (value == null || (typeof value === "string" && value.trim().length === 0));
 }

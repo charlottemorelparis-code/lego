@@ -47,4 +47,12 @@ async function scrapeDealabs (website = 'https://www.dealabs.com/groupe/lego') {
 
 const [,, param] = process.argv;
 
-scrapeDealabs(param);
+// Supprime cette ligne :
+// scrapeDealabs(param);  ← ENLEVE CETTE LIGNE
+
+// Garde seulement ça :
+if (param && !param.startsWith('http')) {
+  scrapeVinted(param);
+} else {
+  scrapeDealabs(param);
+}
