@@ -1,7 +1,7 @@
 // Invoking strict mode
 'use strict';
 
-const API_BASE = 'http://localhost:8092';
+const API_BASE = 'https://lego-lgki.onrender.com';
 
 // State
 let currentDeals = [];
